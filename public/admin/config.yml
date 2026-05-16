@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "posts"
+    label: "Short Stories"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Cover Image", name: "image", widget: "image", required: false}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Genres", name: "categories", widget: "list", default: ["Fiction"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "author"
+    label: "Author Biography"
+    files:
+      - label: "Author Info"
+        name: "about"
+        file: "content/author/about.md"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Biography", name: "bio", widget: "text"}
+          - {label: "Avatar", name: "avatar", widget: "image", required: false}
+          - {label: "Body", name: "body", widget: "markdown", required: false}
